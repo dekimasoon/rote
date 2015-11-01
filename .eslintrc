@@ -1,0 +1,14 @@
+{
+  "extends": "xo-space/esnext",
+  "rules": {
+    "semi": [2, "never"],
+    "prefer-const": 0,
+    "no-multiple-empty-lines": 0,
+  },
+  "globals": {
+    "riot": false
+  },
+  "plugins": [
+    "riot"
+  ]
+}
