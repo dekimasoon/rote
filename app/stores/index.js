@@ -1,6 +1,6 @@
 import {DeckAction, DeckEvent, Deck, DeckStore} from './deck.js'
 
-dispacher.addStore(new DeckStore())
+dispatcher.addStore(new DeckStore())
 
 export const Model = {
   Deck

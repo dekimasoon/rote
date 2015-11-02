@@ -13,7 +13,7 @@ export class Deck {
     this.name = name
     this.created = new Date()
     this.sentences = []
-    this.archivement = 0.0
+    this.achievement = 0.0
   }
 }
 

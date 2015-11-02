@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "app-dev": "echo \"Specify Host IP!\\nnpm run app-dev -- --host 192.168.11.2\\n\" && webpack-dev-server --devtool cheap-source-map --debug --output-pathinfo --inline --hot --port 8888",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "eslint-plugin-standard": "^1.3.1",
     "html-webpack-plugin": "^1.6.2",
     "riotjs-loader": "dekimasoon/riotjs-loader",
+    "stylus": "^0.52.4",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },

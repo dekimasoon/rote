@@ -7,7 +7,7 @@
   },
   "globals": {
     "riot": false,
-    "dispacher": false
+    "dispatcher": false
   },
   "plugins": [
     "riot"

@@ -13,7 +13,7 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       riot: 'riot',
-      dispacher: 'riotcontrol'
+      dispatcher: 'riotcontrol'
     })
   ],
   resolve: {
