@@ -1,3 +1,6 @@
+require('sanitize.css/dist/sanitize.min.css')
+require('./app.styl')
+
 <app>
 
   <p>Hello Riot / Babel / Webpack / eslint !</p>

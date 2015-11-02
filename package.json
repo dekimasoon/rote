@@ -30,6 +30,10 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
-    "riot": "^2.3.0-beta"
+    "css-loader": "^0.21.0",
+    "riot": "^2.3.0-beta",
+    "sanitize.css": "^3.0.0",
+    "style-loader": "^0.13.0",
+    "stylus-loader": "^1.4.0"
   }
 }

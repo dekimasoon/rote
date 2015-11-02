@@ -9,7 +9,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './app/index.tmpl.html',
+      template: './app/index.tmpl.html'
     }),
     new webpack.ProvidePlugin({
       riot: 'riot'
@@ -24,7 +24,9 @@ module.exports = {
       { test: /\.tag$/, include: /app/, loader: 'riotjs' }
     ],
     loaders: [
-      { test: /\.js$|\.tag$/, include: /app/, loader: 'babel' }
+      { test: /\.js$|\.tag$/, include: /app/, loader: 'babel' },
+      { test: /\.styl$/, include: /app/, loader: 'style!css?minimize!stylus' },
+      { test: /\.css$/, include: /node_modules/, loader: 'style!css' }
     ]
   },
   devServer: {
