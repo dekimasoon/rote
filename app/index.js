@@ -1,3 +1,3 @@
-require('app.tag')
+import 'app.tag'
 
 riot.mount('*')

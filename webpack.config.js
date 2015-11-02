@@ -12,7 +12,8 @@ module.exports = {
       template: './app/index.tmpl.html'
     }),
     new webpack.ProvidePlugin({
-      riot: 'riot'
+      riot: 'riot',
+      dispacher: 'riotcontrol'
     })
   ],
   resolve: {
@@ -20,11 +21,9 @@ module.exports = {
     root: __dirname + '/app'
   },
   module: {
-    preLoaders: [
-      { test: /\.tag$/, include: /app/, loader: 'riotjs' }
-    ],
     loaders: [
-      { test: /\.js$|\.tag$/, include: /app/, loader: 'babel' },
+      { test: /\.tag$/, include: /app/, loader: 'riotjs' },
+      { test: /\.js$/, include: /app/, loader: 'babel' },
       { test: /\.styl$/, include: /app/, loader: 'style!css?minimize!stylus' },
       { test: /\.css$/, include: /node_modules/, loader: 'style!css' }
     ]

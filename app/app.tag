@@ -1,11 +1,12 @@
 require('sanitize.css/dist/sanitize.min.css')
 require('./app.styl')
+require('views/welcome/welcome.tag')
 
 <app>
 
-  <p>Hello Riot / Babel / Webpack / eslint !</p>
+  <welcome></welcome>
 
-  <script type="babel">
+  <script type="es6">
     console.log('Hello in Console')
   </script>
 
