@@ -1,13 +1,26 @@
 require('sanitize.css/dist/sanitize.min.css')
 require('./app.styl')
-require('views/welcome/welcome.tag')
+require('./views')
 
 <app>
 
-  <welcome></welcome>
-
   <script type="es6">
-    console.log('Hello in Console')
+
+    this.on('mount', () => {
+      riot.route.start()
+      riot.route.exec()
+    })
+    
+    let root = this.root
+    riot.route(view => {
+      while (root.firstChild) {
+        root.removeChild(root.firstChild)
+      }
+      let tag = document.createElement(view || 'welcome')
+      root.appendChild(tag)
+      riot.mount(tag)
+    })
+
   </script>
 
 </app>

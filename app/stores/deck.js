@@ -24,8 +24,10 @@ export class DeckStore {
     // Initialize
     this.on(DeckAction.Init, () => {
       // for dev
-      let deck = new Deck('Duo3.0 全文')
-      this.decks.push(deck)
+      if (!this.decks.length) {
+        let deck = new Deck('Duo3.0 全文')
+        this.decks.push(deck)
+      }
       this.trigger(DeckEvent.Updated, this.decks)
     })
     // Add New Deck

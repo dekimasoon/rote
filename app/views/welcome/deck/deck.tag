@@ -6,12 +6,15 @@ require('components/ex-button.tag')
   <p>勉強したセンテンス数 { detail.sentences.length }</p>
   <p>暗記率 約{ detail.achievement}%</p>
   <div>
-    <ex-button title="詳細"></ex-button>
-    <ex-button title="始める"></ex-button>
+    <ex-button>詳細</ex-button>
+    <ex-button onclick={ start }>始める</ex-button>
   </div>
 
   <script type="es6">
     this.detail = this.opts.detail
+    this.start = () => {
+      riot.route('card')
+    }
   </script>
 
   <style type="text/stylus" scoped>

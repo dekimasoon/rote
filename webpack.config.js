@@ -25,7 +25,8 @@ module.exports = {
       { test: /\.tag$/, include: /app/, loader: 'riotjs' },
       { test: /\.js$/, include: /app/, loader: 'babel' },
       { test: /\.styl$/, include: /app/, loader: 'style!css?minimize!stylus' },
-      { test: /\.css$/, include: /node_modules/, loader: 'style!css' }
+      { test: /\.css$/, include: /node_modules/, loader: 'style!css' },
+      { test: /\.png$|\.jpg$/, include: /app/, loader: 'file?name=[path][name].[ext]' }
     ]
   },
   devServer: {
