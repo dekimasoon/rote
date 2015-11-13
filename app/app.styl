@@ -1,18 +1,9 @@
-color-def = #3C3C3C
-color-acc = #6F6F6F
-color-light = #F5F5F5
+$color-def = #3C3C3C
+$color-acc = #6F6F6F
+$color-light = #F5F5F5
+$color-border = #DADADA
 
-app
-  font-family 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', 'sans-serif'
-  font-size 16px
-  letter-spacing -0.02em
-  color color-def
-  border-color color-def
-
-.interactive
-  &:active
-    color color-light !important
-    border-color color-light !important
-
-.bordered
-  border-color #DADADA !important
+$button-text
+  font-size 1.12em
+  padding-bottom 0.2em
+  border-bottom 1px solid $color-border

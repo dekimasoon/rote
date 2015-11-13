@@ -22,7 +22,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.tag$/, include: /app/, loader: 'riotjs' },
+      { test: /\.tag$/, include: /app/, loader: 'riotjs!riotjs-style-plus' },
       { test: /\.js$/, include: /app/, loader: 'babel' },
       { test: /\.styl$/, include: /app/, loader: 'style!css?minimize!stylus' },
       { test: /\.css$/, include: /node_modules/, loader: 'style!css' },

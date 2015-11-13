@@ -2,8 +2,8 @@
 
   <yield/>
 
-  <style type="text/stylus" scoped>
-    :scope
+  <style type="stylus">
+    ex-button
       display inline-block
       padding 4px
       &:active

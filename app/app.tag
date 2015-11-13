@@ -10,7 +10,7 @@ require('./views')
       riot.route.start()
       riot.route.exec()
     })
-    
+
     let root = this.root
     riot.route(view => {
       while (root.firstChild) {
@@ -22,5 +22,15 @@ require('./views')
     })
 
   </script>
+
+  <style type="stylus">
+    @import "./app.styl"
+    app
+      font-family 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', 'sans-serif'
+      font-size 16px
+      letter-spacing -0.02em
+      color $color-def
+      border-color $color-def
+  </style>
 
 </app>

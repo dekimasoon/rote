@@ -7,7 +7,7 @@ require('./deck/deck.tag')
     <p>こんにちは<br>最近がんばっていますね<br>今日も丸暗記していきましょう</p>
   </div>
 
-  <div name="deckList" class="bordered">
+  <div name="deckList">
     <deck each={ deck in decks }
           detail={ deck }
     </deck>
@@ -26,21 +26,22 @@ require('./deck/deck.tag')
     })
   </script>
 
-  <style type="text/stylus" scoped>
-    :scope
+  <style type="stylus">
+    @import '~app.styl'
+    welcome
       display block
       padding 24px
-    div[name=headerBox]
-      text-align right
-      h2
-        margin 16px 0 24px
-        font-size 1.12em
-        font-weight normal
-      p
-        margin 0 0 32px
-    div[name=deckList]
-      text-align left
-      border-top 1px solid
+      div[name=headerBox]
+        text-align right
+        h2
+          margin 16px 0 24px
+          font-size 1.12em
+          font-weight normal
+        p
+          margin 0 0 32px
+      div[name=deckList]
+        text-align left
+        border-top 1px solid $color-border
   </style>
 
 </welcome>

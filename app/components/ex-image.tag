@@ -1,17 +1,19 @@
 <ex-image>
 
-  <img name="image">
+  <img name="img">
 
   <script type="es6">
     if (this.opts.ratio) {
-      this.image.style.display = 'none'
-      this.image.onload = () => {
-        this.image.style.width = `${this.image.naturalWidth / this.opts.ratio}px`
-        this.image.style.height = `${this.image.natualHeight / this.opts.ratio}px`
-        this.image.style.display = ''
+      this.img.style.display = 'none'
+      this.img.onload = () => {
+        this.img.style.width = `${this.img.naturalWidth / this.opts.ratio}px`
+        this.img.style.height = `${this.img.natualHeight / this.opts.ratio}px`
+        this.img.style.display = ''
       }
     }
-    this.image.src = this.opts.url
+    if (this.opts.file) {
+      this.img.src = this.opts.file
+    }
   </script>
 
 </ex-image>
