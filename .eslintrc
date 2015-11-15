@@ -6,6 +6,7 @@
     "no-multiple-empty-lines": 0,
   },
   "globals": {
+    "window": false,
     "document": false,
     "location": false,
     "riot": false,

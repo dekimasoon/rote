@@ -11,8 +11,8 @@
         this.img.style.display = ''
       }
     }
-    if (this.opts.file) {
-      this.img.src = this.opts.file
+    if (this.opts.file || this.parent.opts.file) {
+      this.img.src = this.opts.file || this.parent.opts.file
     }
   </script>
 

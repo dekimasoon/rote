@@ -5,7 +5,6 @@ require('./views')
 <app>
 
   <script type="es6">
-
     this.on('mount', () => {
       riot.route.start()
       riot.route.exec()
@@ -25,7 +24,11 @@ require('./views')
 
   <style type="stylus">
     @import "./app.styl"
+    html, body
+      height 100%
     app
+      display block
+      height 100%
       font-family 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', 'sans-serif'
       font-size 16px
       letter-spacing -0.02em
