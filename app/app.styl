@@ -3,7 +3,21 @@ $color-acc = #6F6F6F
 $color-light = #F5F5F5
 $color-border = #DADADA
 
-$button-text
+// css hacks
+$vertical-align-middle
+  position relative
+  top 50%
+  -webkit-transform translateY(-50%)
+  transform translateY(-50%)
+
+// style like class
+$button-border
   font-size 1.12em
   padding-bottom 0.2em
   border-bottom 1px solid $color-border
+
+$button-round
+  font-size 0.7em
+  padding 4px 8px
+  background-color $color-light
+  border-radius 12px

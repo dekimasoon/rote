@@ -1,4 +1,4 @@
-require('./deck/deck.tag')
+require('./subviews/deck.tag')
 
 <welcome>
 

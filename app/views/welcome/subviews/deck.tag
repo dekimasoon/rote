@@ -1,5 +1,3 @@
-require('components/ex-button.tag')
-
 <deck>
 
   <p name="name">{ deck.name }</p>
@@ -33,7 +31,7 @@ require('components/ex-button.tag')
         float right
         margin-top 8px
       ex-button
-        @extend $button-text
+        @extend $button-border
   </style>
 
 </deck>

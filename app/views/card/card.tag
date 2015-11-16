@@ -1,5 +1,3 @@
-require('components/ex-image.tag')
-
 <card>
 
   <p>No. { card.number }</p>
@@ -7,7 +5,12 @@ require('components/ex-image.tag')
     <p>{ card.question }</p>
   </div>
   <div>
-    <p>{ card.answer }</p>
+    <ex-button if={ !isCheated } onclick={ toggleAnswer }>
+      タップして答えを表示
+    </ex-button>
+    <p if={ isCheated } onclick={ toggleAnswer }>
+      { card.answer }
+    </p>
   </div>
   <div>
     <ex-button>忘れた</ex-button>
@@ -20,11 +23,15 @@ require('components/ex-image.tag')
   <script type="es6">
     import {Action, Event} from 'stores'
 
+    this.isCheated = false
     this.on('mount', () => {
       // for dev
       dispatcher.trigger(Action.Deck.Init)
       dispatcher.trigger(Action.Deck.GetCard)
     })
+    this.toggleAnswer = () => {
+      this.isCheated = !this.isCheated
+    }
     this.stop = () => {
       riot.route('welcome')
     }
@@ -45,23 +52,26 @@ require('components/ex-image.tag')
         font-size 0.6em
         color $color-acc
       > div
-        &:nth-of-type(1)
-          border-bottom 1px solid $color-border
         &:nth-of-type(-n+2)
           height 32%
           font-size 1.12em
+          > p, ex-button
+            @extend $vertical-align-middle
+        &:nth-of-type(1)
+          border-bottom 1px solid $color-border
+        &:nth-of-type(2)
+          text-align center
+          > ex-button
+            @extend $button-round
+            margin 0 auto
           > p
-            // go app.styl
-            position relative
-            top 50%
-            -webkit-transform: translateY(-50%);
-            transform translateY(-50%)
+            text-align left
         &:nth-of-type(3)
           float right
           margin-top 8px
           ex-button
-            @extend $button-text
-      ex-button[name="cancel"]
+            @extend $button-border
+      > [name="cancel"]
         position fixed
         bottom 24px
         right 20px

@@ -1,7 +1,3 @@
-require('sanitize.css/dist/sanitize.min.css')
-require('./app.styl')
-require('./views')
-
 <app>
 
   <script type="es6">
