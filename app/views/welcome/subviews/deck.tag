@@ -14,7 +14,7 @@
     this.deck = this.opts.detail
     this.start = () => {
       dispatcher.trigger(Action.Deck.Select, this.deck.id)
-      riot.route('card')
+      riot.route('learning')
     }
   </script>
 
@@ -24,7 +24,7 @@
       display block
       overflow hidden // clearfix
       padding 16px 2px
-      border-bottom 1px solid $color-border
+      border-bottom 1px dashed $color-border
       > [name=name]
         margin-bottom 12px
       > div

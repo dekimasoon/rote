@@ -15,6 +15,7 @@ export class Deck {
     this.id = 0
     this.name = name
     this.created = new Date()
+    this.updated = new Date()
     this.cards = []
     this.achievement = 0.0
   }
@@ -66,10 +67,13 @@ export class DeckStore {
     // Get card
     this.on(DeckAction.GetCard, () => {
       let card = new Card(this.selectedDeck)
-      card.question = '個人の意志は尊重しなければならない'
-      card.answer = 'We must respect the will of the individual.'
+      if (Math.random() < 0.5) {
+        card.id = 3179281319
+        card.question = '個人の意志は尊重しなければならない'
+        card.answer = 'We must respect the will of the individual.'
+      }
       this.selectedCard = card
-      this.trigger(DeckEvent.CardUpdated, card)
+      this.trigger(DeckEvent.CardUpdated, this.selectedCard)
     })
   }
 }

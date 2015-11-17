@@ -1,2 +1,2 @@
-import './card/card.tag'
+import './learning/learning.tag'
 import './welcome/welcome.tag'

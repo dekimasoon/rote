@@ -41,7 +41,7 @@ require('./subviews/deck.tag')
           margin 0 0 32px
       div[name=deckList]
         text-align left
-        border-top 1px solid $color-border
+        border-top 1px dashed $color-border
   </style>
 
 </welcome>
