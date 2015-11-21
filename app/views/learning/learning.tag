@@ -13,24 +13,22 @@ require('./subviews/reviewcard.tag')
   </ex-button>
 
   <script type="es6">
-    import {Action, Event} from 'stores'
+    import {Store} from 'stores'
 
     this.isCheated = false
     this.isReviewing = false
     this.on('mount', () => {
-      // for dev
-      dispatcher.trigger(Action.Deck.Init)
-      dispatcher.trigger(Action.Deck.GetCard)
+      Store.Card.next()
     })
     this.stop = () => {
       riot.route('welcome')
     }
-    dispatcher.on(Event.Deck.CardUpdated, card => {
-      this.card = card
-      this.isReviewing = Boolean(card.id)
+    Store.Card.onUpdated(state => {
+      this.card = state.learningCard
+      this.isReviewing = Boolean(this.card.id)
       this.update()
     })
-    dispatcher.on(Event.Device.SoftKeybord, isKeyboardShowing => {
+    Store.Device.onSoftKeyboardToggel(isKeyboardShowing => {
       this.isKeyboardShowing = isKeyboardShowing
       this.update()
     })

@@ -1,19 +1,18 @@
-import {DeckAction, DeckEvent, Deck, Card, DeckStore} from './deck.js'
-import {DeviceEvent, DeviceStore} from './device.js'
-
-dispatcher.addStore(new DeckStore())
-dispatcher.addStore(new DeviceStore())
+import {Deck, DeckStore} from './deck.js'
+import {Card, CardStore} from './card.js'
+import {DeviceStore} from './device.js'
 
 export const Model = {
   Deck,
   Card
 }
 
-export const Action = {
-  Deck: DeckAction
-}
+let deckStore = new DeckStore()
+let cardStore = new CardStore(deckStore)
+let deviceStore = new DeviceStore()
 
-export const Event = {
-  Deck: DeckEvent,
-  Device: DeviceEvent
+export const Store = {
+  Deck: deckStore,
+  Card: cardStore,
+  Device: deviceStore
 }

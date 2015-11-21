@@ -14,16 +14,17 @@ require('./subviews/deck.tag')
   </div>
 
   <script type="es6">
-    import {Action, Event} from 'stores'
+    import {Store} from 'stores'
 
     this.on('mount', () => {
-      dispatcher.trigger(Action.Deck.Init)
+      Store.Deck.refresh()
     })
 
-    dispatcher.on(Event.Deck.Updated, decks => {
-      this.decks = decks
+    Store.Deck.onUpdated(state => {
+      this.decks = state.decks
       this.update()
     })
+
   </script>
 
   <style type="stylus">

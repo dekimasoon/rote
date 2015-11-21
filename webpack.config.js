@@ -12,8 +12,7 @@ module.exports = {
       template: './app/index.tmpl.html'
     }),
     new webpack.ProvidePlugin({
-      riot: 'riot',
-      dispatcher: 'riotcontrol'
+      riot: 'riot'
     })
   ],
   resolve: {

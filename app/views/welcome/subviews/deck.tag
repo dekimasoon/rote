@@ -9,13 +9,14 @@
   </div>
 
   <script type="es6">
-    import {Action} from 'stores'
+    import {Store} from 'stores'
 
     this.deck = this.opts.detail
     this.start = () => {
-      dispatcher.trigger(Action.Deck.Select, this.deck.id)
+      Store.Deck.select(this.deck.id)
       riot.route('learning')
     }
+
   </script>
 
   <style type="stylus">

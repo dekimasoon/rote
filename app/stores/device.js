@@ -1,18 +1,24 @@
-export const DeviceAction = {
+import StoreBase from './base.js'
+
+const Event = {
+  SoftKeyboardToggel: 'SoftKeyboardToggel'
 }
 
-export const DeviceEvent = {
-  SoftKeybord: 'DeviceSoftKeybord'
-}
+export class DeviceStore extends StoreBase {
 
-export class DeviceStore {
   constructor() {
-    riot.observable(this)
+    super()
+    let initial = {
+      windowHeight: window.innerHeight
+    }
     // add window event listner
-    let initialWindowHeight = window.innerHeight
     window.addEventListener('resize', () => {
-      let isKeyboardShowing = initialWindowHeight > window.innerHeight
-      this.trigger(DeviceEvent.SoftKeybord, isKeyboardShowing)
+      let isKeyboardShowing = initial.windowHeight > window.innerHeight
+      this.trigger(Event.SoftKeyboardToggel, isKeyboardShowing)
     })
+  }
+
+  onSoftKeyboardToggel(callback) {
+    this.on(Event.SoftKeyboardToggel, callback)
   }
 }
