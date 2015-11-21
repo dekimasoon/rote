@@ -16,13 +16,22 @@ require('./subviews/deck.tag')
   <script type="es6">
     import {Store} from 'stores'
 
+    Store.Deck.on(state => {
+      this.decks = state.decks
+      this.update()
+    })
+
+    Store.Deck.listen(this.deckUpdated = state => {
+      this.decks = state.decks
+      this.update()
+    })
+
     this.on('mount', () => {
       Store.Deck.refresh()
     })
 
-    Store.Deck.onUpdated(state => {
-      this.decks = state.decks
-      this.update()
+    this.on('unmount', () => {
+      Store.Deck.remove(this.deckUpdated)
     })
 
   </script>

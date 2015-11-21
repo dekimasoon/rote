@@ -17,21 +17,30 @@ require('./subviews/reviewcard.tag')
 
     this.isCheated = false
     this.isReviewing = false
-    this.on('mount', () => {
-      Store.Card.next()
-    })
-    this.stop = () => {
-      riot.route('welcome')
-    }
-    Store.Card.onUpdated(state => {
+
+    Store.Card.listen(this.cardUpdated = state => {
       this.card = state.learningCard
       this.isReviewing = Boolean(this.card.id)
       this.update()
     })
+
     Store.Device.onSoftKeyboardToggel(isKeyboardShowing => {
       this.isKeyboardShowing = isKeyboardShowing
       this.update()
     })
+
+    this.stop = () => {
+      riot.route('welcome')
+    }
+
+    this.on('mount', () => {
+      Store.Card.next()
+    })
+
+    this.on('unmount', () => {
+      Store.Card.remove(this.cardUpdated)
+    })
+
   </script>
 
   <style type="stylus">

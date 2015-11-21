@@ -6,14 +6,15 @@
       riot.route.exec()
     })
 
+    let tags = []
     let root = this.root
     riot.route(view => {
-      while (root.firstChild) {
-        root.removeChild(root.firstChild)
-      }
+      tags.forEach(tag => {
+        tag.unmount()
+      })
       let tag = document.createElement(view || 'welcome')
       root.appendChild(tag)
-      riot.mount(tag)
+      tags = riot.mount(tag)
     })
     // set app window height by script
     // so when software-keyboard showed up,

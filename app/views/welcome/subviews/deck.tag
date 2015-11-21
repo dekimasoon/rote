@@ -12,6 +12,7 @@
     import {Store} from 'stores'
 
     this.deck = this.opts.detail
+
     this.start = () => {
       Store.Deck.select(this.deck.id)
       riot.route('learning')

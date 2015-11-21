@@ -18,10 +18,13 @@ export class CardStore extends StoreBase {
 
   constructor(deckStore) {
     super({
-      deck: deckStore.state.learningDeck,
-      cards: {},
+      deck: {},
+      cards: [],
       learningCard: {}
-    }, deckStore)
+    })
+    this._addDependency(deckStore, state => {
+      this._state.deck = state.learningDeck
+    })
   }
 
   next() {

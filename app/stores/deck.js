@@ -20,7 +20,11 @@ export class DeckStore extends StoreBase {
     })
     if (!this._state.decks.length) {
       let deck = new Deck('Duo3.0 全文')
+      deck.id = 'hogehogehoge'
+      let deck2 = new Deck('四文字熟語集')
+      deck2.id = 'lfksdflsajfsl'
       this._state.decks.push(deck)
+      this._state.decks.push(deck2)
       this._state.learningDeck = deck
     }
     this._triggerUpdated()

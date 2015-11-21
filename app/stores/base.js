@@ -1,12 +1,18 @@
 export default class StoreBase {
 
-  constructor(state, ...dependencies) {
+  constructor(state) {
     riot.observable(this)
     this._state = state
-    dependencies.forEach(dependency => {
-      dependency.onUpdated(() => {
-        this._triggerUpdated()
-      })
+  }
+
+  _triggerUpdated() {
+    this.trigger('updated', this.state)
+  }
+
+  _addDependency(store, callback) {
+    callback(store.state)
+    store.on(state => {
+      callback(state)
     })
   }
 
@@ -18,12 +24,12 @@ export default class StoreBase {
     this._triggerUpdated()
   }
 
-  _triggerUpdated() {
-    this.trigger('updated', this.state)
+  listen(callback) {
+    this.on('updated', callback)
   }
 
-  onUpdated(callback) {
-    this.on('updated', callback)
+  remove(callback) {
+    this.off('updated', callback)
   }
 
 }
