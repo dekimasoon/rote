@@ -21,4 +21,5 @@ export class DeviceStore extends StoreBase {
   onSoftKeyboardToggel(callback) {
     this.on(Event.SoftKeyboardToggel, callback)
   }
+
 }

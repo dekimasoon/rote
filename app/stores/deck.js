@@ -27,7 +27,7 @@ export class DeckStore extends StoreBase {
       this._state.decks.push(deck2)
       this._state.learningDeck = deck
     }
-    this._triggerUpdated()
+    this._updated()
   }
 
   add(deck) {
@@ -40,6 +40,7 @@ export class DeckStore extends StoreBase {
     this._state.learningDeck = this._state.decks.find(deck => {
       return deck.id === id
     })
-    this._triggerUpdated()
+    this._updated()
   }
+
 }

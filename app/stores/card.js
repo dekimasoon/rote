@@ -35,6 +35,7 @@ export class CardStore extends StoreBase {
       card.answer = 'We must respect the will of the individual.'
     }
     this._state.learningCard = card
-    this._triggerUpdated()
+    this._updated()
   }
+
 }

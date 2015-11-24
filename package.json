@@ -37,7 +37,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
-    "riot": "^2.3.0",
+    "riot": "^2.3.11",
     "sanitize.css": "^3.0.0"
   }
 }

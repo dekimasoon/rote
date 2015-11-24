@@ -5,7 +5,7 @@ export default class StoreBase {
     this._state = state
   }
 
-  _triggerUpdated() {
+  _updated() {
     this.trigger('updated', this.state)
   }
 
@@ -21,7 +21,7 @@ export default class StoreBase {
   }
 
   refresh() {
-    this._triggerUpdated()
+    this._updated()
   }
 
   listen(callback) {
