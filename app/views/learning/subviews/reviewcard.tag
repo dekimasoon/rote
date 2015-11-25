@@ -17,16 +17,27 @@
   </div>
 
   <script type="es6">
-    this.isCheated = false
-    this.on('update', () => {
-      this.card = this.opts.detail
-    })
+    import {store} from 'stores'
+
+    this.cardStore = store.deck.state.learningDeck.cardStore
+
     this.toggleAnswer = () => {
       this.isCheated = !this.isCheated
     }
+
     this.remembered = () => {
       this.card.repeated++
+      this.cardStore.next()
     }
+
+    this.on('update', () => {
+      this.card = this.cardStore.state.learningCard
+    })
+
+    this.cardStore.listen(() => {
+      this.isCheated = false
+    })
+
   </script>
 
   <style type="stylus">

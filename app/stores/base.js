@@ -6,13 +6,13 @@ export default class StoreBase {
   }
 
   _updated() {
-    this.trigger('updated', this.state)
+    this.trigger('updated')
   }
 
   _addDependency(store, callback) {
-    callback(store.state)
-    store.on(state => {
-      callback(state)
+    callback()
+    store.listen(() => {
+      callback()
     })
   }
 
@@ -20,15 +20,11 @@ export default class StoreBase {
     return this._state
   }
 
-  refresh() {
-    this._updated()
-  }
-
   listen(callback) {
     this.on('updated', callback)
   }
 
-  remove(callback) {
+  cancel(callback) {
     this.off('updated', callback)
   }
 

@@ -1,5 +1,5 @@
 import {Deck, DeckStore} from './deck.js'
-import {Card, CardStore} from './card.js'
+import {Card} from './card.js'
 import {DeviceStore} from './device.js'
 
 export const Model = {
@@ -8,11 +8,9 @@ export const Model = {
 }
 
 let deckStore = new DeckStore()
-let cardStore = new CardStore(deckStore)
 let deviceStore = new DeviceStore()
 
-export const Store = {
-  Deck: deckStore,
-  Card: cardStore,
-  Device: deviceStore
+export const store = {
+  deck: deckStore,
+  device: deviceStore
 }

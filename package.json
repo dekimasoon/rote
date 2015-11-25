@@ -37,7 +37,9 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "node-uuid": "^1.4.7",
     "riot": "^2.3.11",
-    "sanitize.css": "^3.0.0"
+    "sanitize.css": "^3.0.0",
+    "stone-skin": "^0.5.2"
   }
 }

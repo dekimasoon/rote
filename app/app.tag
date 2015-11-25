@@ -16,8 +16,8 @@
       root.appendChild(tag)
       tags = riot.mount(tag)
     })
-    // set window height by script
-    // so when software-keyboard showed up,
+    // Set window height by script.
+    // So when software-keyboard showed up,
     // the window height is not resized or affected.
     document.body.style.height = `${window.innerHeight}px`
 

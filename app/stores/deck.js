@@ -1,13 +1,19 @@
 import StoreBase from './base.js'
+import uuid from 'node-uuid'
+import {CardStore} from './card.js'
 
 export class Deck {
   constructor(name) {
-    this.id = 0
+    this.id = uuid.v4()
     this.name = name
     this.created = new Date()
     this.updated = new Date()
-    this.cards = []
     this.achievement = 0.0
+    this.cardStore = new CardStore(this.id)
+    this.cards = this.cardStore.state.cards
+    this.cardStore.listen(() => {
+      this.cards = this.cardStore.state.cards
+    })
   }
 }
 
@@ -19,12 +25,9 @@ export class DeckStore extends StoreBase {
       learningDeck: {}
     })
     if (!this._state.decks.length) {
-      let deck = new Deck('Duo3.0 全文')
-      deck.id = 'hogehogehoge'
-      let deck2 = new Deck('四文字熟語集')
-      deck2.id = 'lfksdflsajfsl'
+      let deck = new Deck('例: Duo3.0全文')
+      deck.id = uuid.v4()
       this._state.decks.push(deck)
-      this._state.decks.push(deck2)
       this._state.learningDeck = deck
     }
     this._updated()
@@ -33,7 +36,7 @@ export class DeckStore extends StoreBase {
   add(deck) {
     this._state.decks.push(deck)
     this._state.learningDeck = deck
-    this._trrigerUpdated()
+    this._updated()
   }
 
   select(id) {

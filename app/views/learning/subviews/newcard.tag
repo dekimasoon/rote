@@ -13,13 +13,21 @@
   </div>
   <div>
     <ex-button>これ以上追加しない</ex-button>
-    <ex-button>追加</ex-button>
+    <ex-button onclick={ add }>追加</ex-button>
   </div>
 
   <script type="es6">
-    this.on('update', () => {
-      this.card = this.opts.detail
-    })
+    import {store} from 'stores'
+
+    let cardStore = store.deck.state.learningDeck.cardStore
+
+    this.add = () => {
+      cardStore.add(this.question.value, this.answer.value)
+      this.question.value = ''
+      this.answer.value = ''
+      cardStore.next()
+    }
+
   </script>
 
   <style type="stylus">

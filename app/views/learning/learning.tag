@@ -6,26 +6,28 @@ require('./subviews/reviewcard.tag')
   <div>
     <p>No. { card.number }</p>
   </div>
-  <reviewcard detail={ card } if={ isReviewing }></reviewcard>
+  <reviewcard if={ isReviewing }></reviewcard>
   <newcard if={ !isReviewing }></newcard>
   <ex-button name="cancel" onclick={ stop } if={ !isKeyboardShowing }>
     <ex-image file={ $image.cancel } ratio=3></ex-image>
   </ex-button>
 
   <script type="es6">
-    import {Store} from 'stores'
+    import {store} from 'stores'
 
     this.isCheated = false
     this.isReviewing = false
+    this.cardStore = store.deck.state.learningDeck.cardStore
 
-    Store.Card.listen(this.cardUpdated = state => {
-      this.card = state.learningCard
-      this.isReviewing = Boolean(this.card.id)
+    this.cardStore.listen(this.cardUpdated = () => {
+      this.card = this.cardStore.state.learningCard
+      this.isReviewing = Boolean(this.card.stage)
       this.update()
     })
 
-    Store.Device.onSoftKeyboardToggel(isKeyboardShowing => {
-      this.isKeyboardShowing = isKeyboardShowing
+    store.device.listenSoftKeyboardToggel(this.isKeyCb = isKeyShowing => {
+      console.log('key')
+      this.isKeyboardShowing = isKeyShowing
       this.update()
     })
 
@@ -34,11 +36,12 @@ require('./subviews/reviewcard.tag')
     }
 
     this.on('mount', () => {
-      Store.Card.next()
+      this.cardStore.next()
     })
 
     this.on('unmount', () => {
-      Store.Card.remove(this.cardUpdated)
+      this.cardStore.cancel(this.cardUpdated)
+      store.device.cancelSoftKeyboardToggel(this.isKeyCb)
     })
 
   </script>
