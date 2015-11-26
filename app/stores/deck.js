@@ -34,16 +34,22 @@ export class DeckStore extends StoreBase {
   }
 
   add(deck) {
-    this._state.decks.push(deck)
-    this._state.learningDeck = deck
-    this._updated()
+    return new Promise(resolve => {
+      this._state.decks.push(deck)
+      this._state.learningDeck = deck
+      this._updated()
+      resolve()
+    })
   }
 
   select(id) {
-    this._state.learningDeck = this._state.decks.find(deck => {
-      return deck.id === id
+    return new Promise(resolve => {
+      this._state.learningDeck = this._state.decks.find(deck => {
+        return deck.id === id
+      })
+      this._updated()
+      resolve()
     })
-    this._updated()
   }
 
 }

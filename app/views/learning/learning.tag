@@ -6,8 +6,7 @@ require('./subviews/reviewcard.tag')
   <div>
     <p>No. { card.number }</p>
   </div>
-  <reviewcard if={ isReviewing }></reviewcard>
-  <newcard if={ !isReviewing }></newcard>
+  <ex-replaceable> <!-- newcard or reviewcard -->
   <ex-button name="cancel" onclick={ stop } if={ !isKeyboardShowing }>
     <ex-image file={ $image.cancel } ratio=3></ex-image>
   </ex-button>
@@ -15,18 +14,25 @@ require('./subviews/reviewcard.tag')
   <script type="es6">
     import {store} from 'stores'
 
-    this.isCheated = false
     this.isReviewing = false
     this.cardStore = store.deck.state.learningDeck.cardStore
 
     this.cardStore.listen(this.cardUpdated = () => {
       this.card = this.cardStore.state.learningCard
-      this.isReviewing = Boolean(this.card.stage)
+      let replaceElement = (target, element) => {
+        target.parentNode.insertBefore(element, target)
+        target.parentNode.removeChild(target)
+        return element
+      }
+      let replace = this.element || document.querySelector('ex-replaceable')
+      let view = this.card.stage === 0 ? 'newcard' : 'reviewcard'
+      let newElement = document.createElement(view)
+      this.element = replaceElement(replace, newElement)
+      riot.mount(this.element)
       this.update()
     })
 
-    store.device.listenSoftKeyboardToggel(this.isKeyCb = isKeyShowing => {
-      console.log('key')
+    store.device.listenSoftKeyboardToggel(this.keyCb = isKeyShowing => {
       this.isKeyboardShowing = isKeyShowing
       this.update()
     })
@@ -41,7 +47,7 @@ require('./subviews/reviewcard.tag')
 
     this.on('unmount', () => {
       this.cardStore.cancel(this.cardUpdated)
-      store.device.cancelSoftKeyboardToggel(this.isKeyCb)
+      store.device.cancelSoftKeyboardToggel(this.keyCb)
     })
 
   </script>

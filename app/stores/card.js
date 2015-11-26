@@ -41,22 +41,33 @@ export class CardStore extends StoreBase {
   }
 
   add(question, answer) {
-    let card = new Card(this._state.deckId, this._state.cards.length + 1)
-    card.question = question
-    card.answer = answer
-    card.stage = 1
-    this._state.cards.push(card)
-    this._updated()
+    return new Promise(resolve => {
+      let card = new Card(this._state.deckId, this._state.cards.length + 1)
+      card.question = question
+      card.answer = answer
+      card.stage = 1
+      this._state.cards.push(card)
+      this._updated()
+      resolve()
+    })
   }
 
   remembered() {
-    this._state.learningCard.repeated++
-    this._state.learningCard.stage++
+    return new Promise(resolve => {
+      let card = this._state.learningCard
+      card.repeated++
+      card.stage = Math.min(card.stage + 1, 5)
+      resolve()
+    })
   }
 
   forgotten() {
-    this._state.learningCard.repeated++
-    this._state.learningCard.stage--
+    return new Promise(resolve => {
+      let card = this._state.learningCard
+      card.repeated++
+      card.stage = Math.max(card.stage + 1, 5)
+      resolve()
+    })
   }
 
 }

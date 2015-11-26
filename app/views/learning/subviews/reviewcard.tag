@@ -11,9 +11,13 @@
       { card.answer }
     </p>
   </div>
-  <div>
+  <div show={ !isForgotten }>
     <ex-button onclick={ forgotten }>忘れた</ex-button>
     <ex-button onclick={ remembered } >覚えてる</ex-button>
+  </div>
+  <div show={ isForgotten }>
+    <p>忘れるのは仕方ありませんよね<br>3回書いて復習しましょう</p>
+    <ex-button onclick={ reviewed }>復讐した</ex-button>
   </div>
 
   <script type="es6">
@@ -23,19 +27,28 @@
 
     this.toggleAnswer = () => {
       this.isCheated = !this.isCheated
+      this.update()
     }
 
     this.remembered = () => {
-      this.card.repeated++
+      this.cardStore.remembered().then(() => {
+        this.cardStore.next()
+      })
+    }
+
+    this.forgotten = () => {
+      this.cardStore.forgotten().then(() => {
+        this.isForgotten = !this.isForgotten
+        this.update()
+      })
+    }
+
+    this.reviewed = () => {
       this.cardStore.next()
     }
 
     this.on('update', () => {
       this.card = this.cardStore.state.learningCard
-    })
-
-    this.cardStore.listen(() => {
-      this.isCheated = false
     })
 
   </script>
@@ -60,11 +73,14 @@
           margin 0 auto
         > p
           text-align left
-      > div:nth-of-type(3)
+      > div:nth-of-type(3), div:nth-of-type(4)
+        text-align right
         float right
         margin-top 8px
         ex-button
           @extend $button-border
+        p
+          margin-bottom 12px
   </style>
 
 </reviewcard>
