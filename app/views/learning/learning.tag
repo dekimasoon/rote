@@ -6,7 +6,7 @@ require('./subviews/reviewcard.tag')
   <div>
     <p>No. { card.number }</p>
   </div>
-  <ex-replaceable> <!-- newcard or reviewcard -->
+  <ex-replaceable/> <!-- newcard or reviewcard -->
   <ex-button name="cancel" onclick={ stop } if={ !isKeyboardShowing }>
     <ex-image file={ $image.cancel } ratio=3></ex-image>
   </ex-button>
