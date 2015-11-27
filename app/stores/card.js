@@ -65,7 +65,7 @@ export class CardStore extends StoreBase {
     return new Promise(resolve => {
       let card = this._state.learningCard
       card.repeated++
-      card.stage = Math.max(card.stage + 1, 5)
+      card.stage = Math.max(card.stage - 1, 0)
       resolve()
     })
   }

@@ -8,12 +8,16 @@ export class Deck {
     this.name = name
     this.created = new Date()
     this.updated = new Date()
-    this.achievement = 0.0
     this.cardStore = new CardStore(this.id)
     this.cards = this.cardStore.state.cards
-    this.cardStore.listen(() => {
-      this.cards = this.cardStore.state.cards
+  }
+
+  get achievement() {
+    let achievement = 0
+    this.cards.forEach(card => {
+      achievement += (100 / this.cards.length) * (card.stage / 5)
     })
+    return achievement
   }
 }
 

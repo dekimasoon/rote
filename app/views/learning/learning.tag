@@ -4,7 +4,9 @@ require('./subviews/reviewcard.tag')
 <learning>
 
   <div>
-    <p>No. { card.number }</p>
+    <p>No. { card.number }
+      <ro-progress stage={ card.stage }/>
+    </p>
   </div>
   <ex-replaceable/> <!-- newcard or reviewcard -->
   <ex-button name="cancel" onclick={ stop } if={ !isKeyboardShowing }>
@@ -64,6 +66,8 @@ require('./subviews/reviewcard.tag')
         color $color-acc
         > p
           @extend $vertical-align-bottom
+          > ro-progress
+            float right
       > newcard, reviewcard
         height 94%
       > [name="cancel"]

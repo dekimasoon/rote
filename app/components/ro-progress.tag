@@ -1,6 +1,6 @@
 <ro-progress>
 
-  <span style=background-position:{ '0 ' +-(opts.stage || 0) * 6 + 'px' }></span>
+  <span style=background-position:{ '0 ' + (opts.stage || 0) * -6 + 'px' }></span>
 
   <style type="stylus">
     ro-progress
