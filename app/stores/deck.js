@@ -8,8 +8,9 @@ export class Deck {
     this.name = name
     this.created = new Date()
     this.updated = new Date()
-    this.cardStore = new CardStore(this.id)
+    this.cardStore = new CardStore(this)
     this.cards = this.cardStore.state.cards
+    this.pause = false
   }
 
   get achievement() {
@@ -52,6 +53,20 @@ export class DeckStore extends StoreBase {
         return deck.id === id
       })
       this._updated()
+      resolve()
+    })
+  }
+
+  pause() {
+    return new Promise(resolve => {
+      this._state.learningDeck.pause = true
+      resolve()
+    })
+  }
+
+  start() {
+    return new Promise(resolve => {
+      this._state.learningDeck.pause = false
       resolve()
     })
   }

@@ -12,7 +12,7 @@
     <ex-textarea name="answer" placeholder="A." validate={ validator } class="sample"></ex-textarea>
   </div>
   <div>
-    <ex-button>これ以上追加しない</ex-button>
+    <ex-button onclick={ pause } if={ showPause }>これ以上追加しない</ex-button>
     <ex-button onclick={ add }>追加</ex-button>
   </div>
 
@@ -23,11 +23,18 @@
 
     this.add = () => {
       if (this.$va.all()) {
-        console.log(this.question, this.answer)
         cardStore.add(this.question.value, this.answer.value)
         cardStore.next()
       }
     }
+
+    this.pause = () => {
+      store.deck.pause().then(() => {
+        cardStore.next()
+      })
+    }
+
+    this.showPause = cardStore.state.cards.length > 0
 
     this.validator = value => {
       return /.+/.test(value)

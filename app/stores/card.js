@@ -17,22 +17,31 @@ export class Card {
 
 export class CardStore extends StoreBase {
 
-  constructor(deckId) {
+  constructor(deck) {
     super({
-      deckId,
+      deck,
       cards: [],
-      learningCard: {}
+      learningCard: {},
     })
   }
 
   next() {
     return new Promise(resolve => {
       let card
-      if (this._state.cards.length && Math.random() < 0.8) {
-        let index = Math.floor(Math.random() * this._state.cards.length)
-        card = this._state.cards[index]
+      let index = Math.floor(Math.random() * this._state.cards.length)
+      if (this._state.deck.pause) {
+        if (this._state.cards.length) {
+          card = this._state.cards[index]
+        } else {
+          throw new Error('unexpectable')
+          card = new Card(this._state.deck.id, this._state.cards.length + 1)
+        }
       } else {
-        card = new Card(this._state.deckId, this._state.cards.length + 1)
+        if (this._state.cards.length && Math.random() < 0.8) {
+          card = this._state.cards[index]
+        } else {
+          card = new Card(this._state.deck.id, this._state.cards.length + 1)
+        }
       }
       this._state.learningCard = card
       this._updated()
@@ -42,7 +51,7 @@ export class CardStore extends StoreBase {
 
   add(question, answer) {
     return new Promise(resolve => {
-      let card = new Card(this._state.deckId, this._state.cards.length + 1)
+      let card = new Card(this._state.deck.id, this._state.cards.length + 1)
       card.question = question
       card.answer = answer
       card.stage = 1
