@@ -6,10 +6,10 @@
     <p>追加してください</p>
   </div>
   <div>
-    <textarea name="question" placeholder="Q."></textarea>
+    <ex-textarea name="question" placeholder="Q." validate={ validator }></ex-textarea>
   </div>
   <div>
-    <textarea name="answer" placeholder="A."></textarea>
+    <ex-textarea name="answer" placeholder="A." validate={ validator } class="sample"></ex-textarea>
   </div>
   <div>
     <ex-button>これ以上追加しない</ex-button>
@@ -22,11 +22,20 @@
     let cardStore = store.deck.state.learningDeck.cardStore
 
     this.add = () => {
-      cardStore.add(this.question.value, this.answer.value)
-      this.question.value = ''
-      this.answer.value = ''
-      cardStore.next()
+      if (this.$va.all()) {
+        console.log(this.question, this.answer)
+        cardStore.add(this.question.value, this.answer.value)
+        cardStore.next()
+      }
     }
+
+    this.validator = value => {
+      return /.+/.test(value)
+    }
+
+    this.on('validate', () => {
+      this.update()
+    })
 
   </script>
 
@@ -49,7 +58,7 @@
         float right
         ex-button
           @extend $button-border
-      textarea
+      ex-textarea
         width 100%
         height 100%
         resize none
@@ -60,6 +69,8 @@
         -webkit-tap-highlight-color transparent
         &:focus
           outline 0
-  </style>
+        &.va-fail
+          border solid 1px pink
+    </style>
 
 </newcard>

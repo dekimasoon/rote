@@ -1,4 +1,5 @@
 import './ex-button.tag'
 import './ex-image.tag'
 import './ex-replaceable.tag'
+import './ex-textarea.tag'
 import './ro-progress.tag'
