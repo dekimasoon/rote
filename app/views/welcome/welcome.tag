@@ -15,16 +15,11 @@ require('./subviews/deck.tag')
 
   <script type="es6">
     import {store} from 'stores'
-    
+
     this.on('mount', () => {
       this.decks = store.deck.state.decks
       this.update()
     })
-
-    this.on('unmount', () => {
-      store.deck.cancel(this.deckUpdated)
-    })
-
   </script>
 
   <style type="stylus">

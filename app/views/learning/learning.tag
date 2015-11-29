@@ -9,7 +9,7 @@ require('./subviews/reviewcard.tag')
     </p>
   </div>
   <ex-replaceable/> <!-- newcard or reviewcard -->
-  <ex-button name="cancel" onclick={ stop } if={ !isKeyboardShowing }>
+  <ex-button name="cancel" onclick={ cancel } if={ !isKeyboardShowing }>
     <ex-image file={ $image.cancel } ratio=3></ex-image>
   </ex-button>
 
@@ -39,7 +39,7 @@ require('./subviews/reviewcard.tag')
       this.update()
     })
 
-    this.stop = () => {
+    this.cancel = () => {
       riot.route('welcome')
     }
 

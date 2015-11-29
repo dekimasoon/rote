@@ -4,7 +4,7 @@
   <p>勉強したセンテンス数 { deck.cards.length }</p>
   <p>暗記率 約{ deck.achievement }%</p>
   <div>
-    <ex-button>詳細</ex-button>
+    <ex-button onclick={ showDetail }>詳細</ex-button>
     <ex-button onclick={ start }>始める</ex-button>
   </div>
 
@@ -12,6 +12,11 @@
     import {store} from 'stores'
 
     this.deck = this.opts.detail
+
+    this.showDetail = () => {
+      store.deck.select(this.deck.id)
+      riot.route('detail')
+    }
 
     this.start = () => {
       store.deck.select(this.deck.id)
