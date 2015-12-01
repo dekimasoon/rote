@@ -50,17 +50,16 @@
     @import '~app.styl'
     newcard
       display block
-      height 100%
+      padding-top 16px
       > div:nth-of-type(1)
-        margin 4% 0
         text-align: right
       > div:nth-of-type(2)
         height 28%
-        padding 6% 2px
+        padding 16px 2px
         border-bottom 1px dashed $color-border
       > div:nth-of-type(3)
         height 28%
-        padding 6% 2px
+        padding 16px 2px
       > div:nth-of-type(4)
         float right
         ex-button

@@ -20,6 +20,8 @@
     // So when software-keyboard showed up,
     // the window height is not resized or affected.
     document.body.style.height = `${window.innerHeight}px`
+    // hide scroll bar
+    document.body.style.overflow = 'hidden'
 
   </script>
 
@@ -33,6 +35,9 @@
       letter-spacing -0.04em
       color $color-def
       border-color $color-def
+      overflow scroll
+      -webkit-overflow-scrolling: touch
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
   </style>
 
 </app>

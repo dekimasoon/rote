@@ -1,5 +1,5 @@
-import StoreBase from './base.js'
 import uuid from 'node-uuid'
+import StoreBase from './base.js'
 import {CardStore} from './card.js'
 
 export class Deck {
@@ -18,7 +18,7 @@ export class Deck {
     this.cards.forEach(card => {
       achievement += (100 / this.cards.length) * (card.stage / 5)
     })
-    return achievement
+    return Math.floor(achievement * 10) / 10
   }
 }
 

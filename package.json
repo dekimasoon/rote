@@ -40,6 +40,7 @@
     "node-uuid": "^1.4.7",
     "riot": "^2.3.11",
     "sanitize.css": "^3.0.0",
+    "snabbt.js": "^0.5.8",
     "stone-skin": "^0.5.2"
   }
 }

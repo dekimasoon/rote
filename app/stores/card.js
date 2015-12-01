@@ -1,5 +1,5 @@
-import StoreBase from './base.js'
 import uuid from 'node-uuid'
+import StoreBase from './base.js'
 
 export class Card {
   constructor(deckId, number) {
@@ -21,7 +21,7 @@ export class CardStore extends StoreBase {
     super({
       deck,
       cards: [],
-      learningCard: {},
+      learningCard: {}
     })
   }
 
@@ -33,15 +33,13 @@ export class CardStore extends StoreBase {
         if (this._state.cards.length) {
           card = this._state.cards[index]
         } else {
+          card = new Card(this._state.deck.id, this._state.cards.length + 1)
           throw new Error('unexpectable')
-          card = new Card(this._state.deck.id, this._state.cards.length + 1)
         }
+      } else if (this._state.cards.length && Math.random() < 0.8) {
+        card = this._state.cards[index]
       } else {
-        if (this._state.cards.length && Math.random() < 0.8) {
-          card = this._state.cards[index]
-        } else {
-          card = new Card(this._state.deck.id, this._state.cards.length + 1)
-        }
+        card = new Card(this._state.deck.id, this._state.cards.length + 1)
       }
       this._state.learningCard = card
       this._updated()
@@ -56,7 +54,6 @@ export class CardStore extends StoreBase {
       card.answer = answer
       card.stage = 1
       this._state.cards.push(card)
-      this._updated()
       resolve()
     })
   }

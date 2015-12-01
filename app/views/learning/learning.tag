@@ -14,6 +14,7 @@ require('./subviews/reviewcard.tag')
   </ex-button>
 
   <script type="es6">
+    import snabbt from 'snabbt.js'
     import {store} from 'stores'
 
     this.isReviewing = false
@@ -21,15 +22,38 @@ require('./subviews/reviewcard.tag')
 
     this.cardStore.listen(this.cardUpdated = () => {
       this.card = this.cardStore.state.learningCard
-      let replaceElement = (target, element) => {
-        target.parentNode.insertBefore(element, target)
-        target.parentNode.removeChild(target)
-        return element
+      let replaceView = (oldView, newView) => {
+        oldView.parentNode.insertBefore(newView, oldView.nextSibling)
+        let or = oldView.getBoundingClientRect()
+        let nr = newView.getBoundingClientRect()
+        let motionWidth = window.innerWidth
+        if (or.width) {
+          snabbt(oldView, {
+            fromPosition: [0, 0, 0],
+            position: [-motionWidth, 0, 0],
+            duration: 300,
+            easing: 'easeOut'
+          })
+          snabbt(newView, {
+            fromPosition: [motionWidth + or.left - nr.left, or.top - nr.top, 0],
+            position: [0, or.top - nr.top, 0],
+            duration: 300,
+            easing: 'easeOut',
+            complete: () => {
+              oldView.parentNode.removeChild(oldView)
+              newView.style.transform = ''
+              newView.style.WebkitTransform = ''
+            }
+          })
+        } else {
+          oldView.parentNode.removeChild(oldView)
+        }
+        return newView
       }
-      let replace = this.element || document.querySelector('ex-replaceable')
-      let view = this.card.stage === 0 ? 'newcard' : 'reviewcard'
-      let newElement = document.createElement(view)
-      this.element = replaceElement(replace, newElement)
+      let oldView = this.element || document.querySelector('ex-replaceable')
+      let newViewName = this.card.stage === 0 ? 'newcard' : 'reviewcard'
+      let newView = document.createElement(newViewName)
+      this.element = replaceView(oldView, newView)
       riot.mount(this.element)
       this.update()
     })

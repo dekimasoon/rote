@@ -57,7 +57,6 @@
     @import '~app.styl'
     reviewcard
       display block
-      height 100%
       > div:nth-of-type(-n+2)
         height 32%
         padding 0 4px
